@@ -1,6 +1,7 @@
-package springboot.project.worktime.global.util;
+package com.yoonsunmi.timetracking.global.util;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -22,6 +23,7 @@ public final class ExcelUtil {
 
             private final Map<String, List<String>> map = new LinkedHashMap<>();
 
+            @Setter
             private String name;
 
             public void addData(String key, String data) {
@@ -40,24 +42,17 @@ public final class ExcelUtil {
                 }
             }
 
-            public void setName(String name) {
-                this.name = name;
-            }
-
         }
 
         private final Workbook workbook = new XSSFWorkbook();
 
         private List<SheetData> sheetDatas = new ArrayList<>();
 
+        @Setter
         private String name;
 
         public void addData(SheetData data) {
             this.sheetDatas.add(data);
-        }
-
-        public void setName(String name) {
-            this.name = name;
         }
 
         @Override

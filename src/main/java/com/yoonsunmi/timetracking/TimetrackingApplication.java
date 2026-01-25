@@ -1,13 +1,13 @@
-package springboot.project.worktime;
+package com.yoonsunmi.timetracking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WorktimeApplication {
+public class TimetrackingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WorktimeApplication.class, args);
+		SpringApplication.run(TimetrackingApplication.class, args);
 	}
 
 }

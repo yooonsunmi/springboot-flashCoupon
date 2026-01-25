@@ -1,4 +1,4 @@
-package springboot.project.worktime;
+package com.yoonsunmi.timetracking;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Disabled	// 테스트 실행을 일시적으로 중지
 @SpringBootTest
-class WorktimeApplicationTests {
+class TimetrackingApplicationTests {
 
 	@Test
 	void contextLoads() {

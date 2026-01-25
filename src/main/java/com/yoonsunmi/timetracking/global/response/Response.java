@@ -1,4 +1,4 @@
-package springboot.project.worktime.global.response;
+package com.yoonsunmi.timetracking.global.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
