@@ -20,15 +20,15 @@
 
 ## 🛠 Tech Stack
 
-| Category | Tech |
-|---------|------|
-| Language | Java 17 |
-| Framework | Spring Boot |
-| DB | PostgreSQL |
-| Persistence | MyBatis |
-| Build Tool | Gradle |
+| Category | Tech                |
+|---------|---------------------|
+| Language | Java 17             |
+| Framework | Spring Boot 3.3.4   |
+| DB | PostgreSQL          |
+| Persistence | MyBatis             |
+| Build Tool | Gradle 8.14.3       |
 | API Docs | Swagger (SpringDoc) |
-| Version Control | GitHub |
+| Version Control | GitHub              |
 
 ---
 
