@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: worktime
+
+server:
+  servlet:
+    context-path: /project/worktime/api
+  error:
+    include-message: always
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+springdoc:
+  swagger-ui:
+    path: /docs
