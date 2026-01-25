@@ -1,36 +1,36 @@
-# Worktime Manager API (근로시간관리 백엔드)
+# ⏱ Event-based Time Tracking System API
 
-근로시간(출퇴근/휴게/시차 출근) 데이터를 관리하는 백엔드 API입니다.  
-업무 도메인을 학습 목적으로 재구성하여 설계/구현했습니다.
+사용자의 시간 활동을 세션(Event) 단위로 기록하고 관리하는 백엔드 시스템입니다.  
+출퇴근 개념에 한정되지 않고, **시간 기록 · 이력 관리 · 기간 잠금(마감)** 구조를 중심으로 설계된 범용 Time Tracking API 입니다.
 
-> ⚠️ 본 프로젝트는 특정 회사의 내부 시스템/프로세스/데이터를 포함하지 않으며,  
-> 근로시간 관리 도메인을 개인적으로 재설계한 학습용 프로젝트입니다.
-
----
-
-## Goals
-- 근로시간 관리 도메인 모델링 및 DB 설계
-- 이력/정합성/마감(잠금) 기능 구현
-- 조회 성능을 고려한 인덱스 및 API 설계
+> ⚠️ 본 프로젝트는 특정 회사 시스템을 공개한 것이 아니라,  
+> 시간 기록(Time Tracking) 도메인을 학습 및 설계 연습 목적으로 재구성한 개인 프로젝트입니다.
 
 ---
 
-## Tech Stack
-- Java 17, Spring Boot 3.3.4
-- PostgreSQL
-- MyBatis
-- Gradle 8.14.3
-- Swagger(OpenAPI)
+## 🎯 Project Goals
+
+- 시간 기록 도메인의 데이터 모델링 경험
+- 이력(History) 관리 구조 설계
+- 데이터 정합성을 고려한 트랜잭션 처리
+- 기간 단위 데이터 잠금(마감) 로직 설계
+- 조회 성능을 고려한 인덱스 전략 적용
 
 ---
 
-## Features
-- 근무 기록(출근/퇴근/휴게) 등록 및 조회
-- 시차 출근 정책 설정(기간 적용)
-- 기간 마감(잠금) 처리
-- 변경 이력(History) 기록
+## 🛠 Tech Stack
+
+| Category | Tech |
+|---------|------|
+| Language | Java 17 |
+| Framework | Spring Boot |
+| DB | PostgreSQL |
+| Persistence | MyBatis |
+| Build Tool | Gradle |
+| API Docs | Swagger (SpringDoc) |
+| Version Control | GitHub |
 
 ---
 
-## Database Design
-(ERD 이미지/링크)
+## 🏗 Architecture
+
