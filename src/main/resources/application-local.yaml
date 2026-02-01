@@ -1,15 +1,27 @@
 spring:
+  config:
+    activate:
+      on-profile: local
+
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public
     username: postgres
     password: postgres
 
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+
 server:
   port: 8010
 
-# MyBatis 사용 시 로그로 쿼리를 보고 싶다면 아래 설정 추가
+jwt:
+  secret: "bXktc3VwZXItc2VjcmV0LWtleS1ieXRlcy0zMi1vci1tb3JlISE="
+
 mybatis:
   configuration:
-    map-underscore-to-camel-case: true # DB의 snake_case를 Java의 camelCase로 매핑
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 쿼리 로그 출력
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

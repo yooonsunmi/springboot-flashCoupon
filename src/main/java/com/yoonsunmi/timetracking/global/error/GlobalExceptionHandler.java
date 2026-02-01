@@ -1,5 +1,6 @@
-package com.yoonsunmi.timetracking.global.exception;
+package com.yoonsunmi.timetracking.global.error;
 
+import com.yoonsunmi.timetracking.global.response.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
-import com.yoonsunmi.timetracking.global.response.Response;
+
 
 @Slf4j
 @RestControllerAdvice
