@@ -44,7 +44,7 @@ public class JwtProvider {
                 .claim("role", role)  // "USER" / "ADMIN"
                 .issuedAt(now)
                 .expiration(exp)
-                .signWith(key)        // ✅ 0.12.x 권장 스타일
+                .signWith(key)
                 .compact();
     }
 

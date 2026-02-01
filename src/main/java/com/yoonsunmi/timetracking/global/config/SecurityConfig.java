@@ -44,7 +44,8 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-resources/**",
                                 "/webjars/**",
-                                "/favicon.ico"
+                                "/favicon.ico",
+                                "/dev/**"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

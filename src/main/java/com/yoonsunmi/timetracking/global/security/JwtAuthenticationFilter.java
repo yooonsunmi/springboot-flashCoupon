@@ -37,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         // 토큰이 있는데 유효하지 않으면 인증 정보 세팅 없이 통과
-        // -> 이후 SecurityConfig의 EntryPoint가 401 처리
+        // 이후 SecurityConfig의 EntryPoint가 401 처리
         if (!jwtProvider.validateToken(token)) {
             filterChain.doFilter(request, response);
             return;
