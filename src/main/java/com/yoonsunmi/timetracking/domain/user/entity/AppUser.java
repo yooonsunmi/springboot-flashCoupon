@@ -1,53 +1,53 @@
 package com.yoonsunmi.timetracking.domain.user.entity;
 
+import com.yoonsunmi.timetracking.global.config.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "app_user")
 @Getter
-@Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)  // 생성자 캡슐화
 @AllArgsConstructor
-public class AppUser {
+@Builder // 빌더 패턴 사용
+public class AppUser extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "login_id", nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 50)
     private String loginId;
 
-    @Column(name = "password_hash", nullable = false, length = 255)
+    @Column(nullable = false)
     private String passwordHash;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
+    @Builder.Default // 빌더 사용 시 기본값 유지
     private Role role = Role.USER;
 
     @Column(name = "is_active", nullable = false)
-    private boolean active = true;
+    @Builder.Default
+    private boolean isActive = true;
 
-    @Column(name = "team_code", length = 50)
-    private Long teamCode;
+    @Column(length = 50)
+    private String teamCode;
 
-    @Column(name = "team_name", length = 100)
+    @Column(length = 100)
     private String teamName;
 
-    @Column(name = "position", length = 50)  // 직급
+    @Column(length = 50)
     private String position;
 
-    @Column(name = "job_title", length = 50) // 직책
+    @Column(length = 50)
     private String jobTitle;
 
-    @Column(name = "phone_number", length = 20)
+    @Column(length = 20)
     private String phoneNumber;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private OffsetDateTime createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    private OffsetDateTime updatedAt;
+    // 비즈니스 로직에 따른 상태 변경 메서드 (Setter 대신 사용)
+    public void deactivate() {
+        this.isActive = false;
+    }
 }

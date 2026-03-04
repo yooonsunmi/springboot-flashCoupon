@@ -3,25 +3,37 @@ spring:
     activate:
       on-profile: local
 
+  # 데이터베이스 연결 설정 (MySQL)
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=public
-    username: postgres
-    password: postgres
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/timetracking_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useUnicode=true
+    username: root
+    password: Ssunmi45!@#
 
+  # JPA & Querydsl 보강 설정
   jpa:
     hibernate:
-      ddl-auto: validate
+      # 개발 시에는 엔티티 수정이 잦으므로 update 권장 (운영은 validate/none)
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
+        highlight_sql: true
+        use_sql_comments: true         # Querydsl이 생성한 JPQL 주석을 SQL에 노출 (디버깅)
+        default_batch_fetch_size: 100  # N+1 문제 해결을 위한 필수 옵션
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 
+# 서버 포트 설정
 server:
   port: 8010
 
+# 보안 설정
 jwt:
   secret: "bXktc3VwZXItc2VjcmV0LWtleS1ieXRlcy0zMi1vci1tb3JlISE="
 
-mybatis:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+# 로컬 개발 시 쿼리 파라미터 확인을 위한 로그 설정
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.orm.jdbc.bind: trace # SQL에 바인딩되는 실제 값 확인
