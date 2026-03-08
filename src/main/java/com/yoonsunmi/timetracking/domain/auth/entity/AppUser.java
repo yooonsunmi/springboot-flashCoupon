@@ -1,4 +1,4 @@
-package com.yoonsunmi.timetracking.domain.user.entity;
+package com.yoonsunmi.timetracking.domain.auth.entity;
 
 import com.yoonsunmi.timetracking.global.config.BaseTimeEntity;
 import jakarta.persistence.*;
@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)  // 생성자 캡슐화
 @AllArgsConstructor
-@Builder // 빌더 패턴 사용
+@Builder
 public class AppUser extends BaseTimeEntity {
 
     @Id

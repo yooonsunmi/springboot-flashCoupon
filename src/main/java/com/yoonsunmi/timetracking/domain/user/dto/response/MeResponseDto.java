@@ -6,7 +6,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class LoginResponseDto {
-    @Schema(description = "JWT Access Token")
-    private String accessToken;
+public class MeResponseDto {
+    @Schema(description = "아이디", example = "admin")
+    private String loginId;
+
+    @Schema(description = "권한", example = "USER")
+    private String role;
 }

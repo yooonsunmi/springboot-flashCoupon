@@ -24,8 +24,11 @@ public class JwtProvider {
     @Value("${jwt.issuer}")
     private String issuer;
 
-    @Value("${jwt.access-token-minutes:60}")
+    @Value("${jwt.access-token-minutes}")
     private long accessTokenMinutes;
+
+    @Value("${jwt.refresh-token-days}")
+    private long refreshTokenDays;
 
     @PostConstruct
     protected void init() {
@@ -34,14 +37,29 @@ public class JwtProvider {
     }
 
     /** 토큰 생성: subject=loginId, claim(role)=USER/ADMIN */
-    public String createToken(String loginId, String role) {
+    public String createAccessToken(String loginId, String role) {
         Date now = new Date();
-        Date exp = new Date(now.getTime() + accessTokenMinutes * 60_000L);
+        Date exp = new Date(now.getTime() + (accessTokenMinutes * 60 * 1000L));
 
         return Jwts.builder()
                 .issuer(issuer)
                 .subject(loginId)
                 .claim("role", role)  // "USER" / "ADMIN"
+                .issuedAt(now)
+                .expiration(exp)
+                .signWith(key)
+                .compact();
+    }
+
+    /** 리프레시 토큰 생성: subject=loginId */
+    public String createRefreshToken(String loginId) {
+        Date now = new Date();
+        // 1일 = 24시간 * 60분 * 60초 * 1000밀리초
+        Date exp = new Date(now.getTime() + refreshTokenDays * 24 * 60 * 60 * 1000L);
+
+        return Jwts.builder()
+                .issuer(issuer)
+                .subject(loginId)
                 .issuedAt(now)
                 .expiration(exp)
                 .signWith(key)
