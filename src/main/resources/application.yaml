@@ -1,6 +1,6 @@
 spring:
   application:
-    name: timetracking
+    name: flashCoupon
 
   # JPA & Hibernate 설정
   jpa:
@@ -21,14 +21,16 @@ spring:
 
 server:
   servlet:
-    context-path: /api/timetracking
+    context-path: /api/flashCoupon
   error:
     include-message: always
 
+# 보안 설정
 jwt:
+  secret: "bXktc3VwZXItc2VjcmV0LWtleS1ieXRlcy0zMi1vci1tb3JlISE="
   access-token-minutes: 30
   refresh-token-days: 14
-  issuer: timetracking
+  issuer: flashCoupon
 
 springdoc:
   swagger-ui:

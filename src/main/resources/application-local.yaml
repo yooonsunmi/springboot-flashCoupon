@@ -6,7 +6,7 @@ spring:
   # 데이터베이스 연결 설정 (MySQL)
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/timetracking_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useUnicode=true
+    url: jdbc:mysql://localhost:3306/flashcoupon_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useUnicode=true
     username: root
     password: Ssunmi45!@#
 
@@ -27,10 +27,6 @@ spring:
 # 서버 포트 설정
 server:
   port: 8010
-
-# 보안 설정
-jwt:
-  secret: "bXktc3VwZXItc2VjcmV0LWtleS1ieXRlcy0zMi1vci1tb3JlISE="
 
 # 로컬 개발 시 쿼리 파라미터 확인을 위한 로그 설정
 logging:

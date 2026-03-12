@@ -1,16 +1,21 @@
-# ⏱ Event-based Time Tracking System API
+# 🎫 Flash Coupon: 선착순 쿠폰 발급 시스템
 
-사용자의 시간 활동을 세션(Event) 단위로 기록하고 관리하는 백엔드 시스템입니다.  
-단순한 출퇴근 기록을 넘어 **시간 기록 · 이력 관리 · 기간 잠금(마감)** 구조를 중심으로 설계된 범용 Time Tracking API입니다.
+Flash Coupon은 대규모 트래픽 환경에서 데이터 정합성을 보장하며 선착순 쿠폰을 발급하고, Spring Batch를 통해 대량의 이력을 관리하는 백엔드 시스템입니다.
+
 ---
 
-## 🎯 Project Goals
+## 🚀 Key Features
+1. 선착순 발급 (동시성 제어)
+- Pessimistic Lock: DB 락을 활용하여 수천 명의 동시 요청에도 정확한 재고 차감 보장.
+- 중복 체크: 동일 유저의 중복 발급을 차단하여 무결성 유지.
 
-- JPA(Spring Data JPA)를 활용한 객체 지향적 도메인 모델링 및 엔티티 설계
-- Querydsl을 도입하여 컴파일 타임 타입 체크가 가능한 동적 쿼리 구현 및 코드 기반의 쿼리 작성
-- Dirty Checking 및 Auditing을 활용한 데이터 변경 이력(History) 자동화
-- 데이터 정합성을 위한 트랜잭션 격리 수준 및 낙관적/비관적 락(Locking) 활용
-- 대용량 시계열 데이터 조회를 고려한 Index 최적화 및 페이징 처리
+2. 쿠폰 관리 및 마감
+- 관리자 기능: 쿠폰명, 총 수량, 유효기간 설정을 통한 쿠폰 발행.
+- 상태 마감: 사용/만료된 쿠폰의 수정을 방지하는 데이터 보호 로직.
+
+3. 일괄 처리 (Spring Batch)
+- 만료 자동화: 매일 자정 유효기간이 지난 쿠폰을 EXPIRED 상태로 일괄 전환.
+- 성능 최적화: Chunk 지향 처리를 통한 대용량 데이터 업데이트 최적화.
 
 ---
 
@@ -25,6 +30,7 @@
 | **Build Tool** | Gradle 8.11.1                           |
 | **API Docs** | Swagger (SpringDoc)                     |
 | **Security** | Spring Security, JWT (jjwt 0.12.5)      |
+| **Batch** | Spring Batch      |
 
 ---
 
@@ -44,3 +50,9 @@ src/main/java/com/yoonsunmi/timetracking
     ├── entity           # BaseTimeEntity (MappedSuperclass)
     ├── exception        # GlobalExceptionHandler
     └── security         # JwtProvider, AuthFilter
+```
+
+## 🔌 Core API
+- POST /api/v1/admin/coupons : [Admin] 선착순 쿠폰 등록
+- POST /api/v1/coupons/{id}/issue : [User] 쿠폰 발급 요청 (동시성 처리)
+- GET /api/v1/my-coupons : [User] 내 쿠폰 함 조회
