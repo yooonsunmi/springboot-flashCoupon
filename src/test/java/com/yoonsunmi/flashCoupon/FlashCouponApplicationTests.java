@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Disabled	// 테스트 실행을 일시적으로 중지
 @SpringBootTest
-class TimetrackingApplicationTests {
+class flashCouponApplicationTests {
 
 	@Test
 	void contextLoads() {
