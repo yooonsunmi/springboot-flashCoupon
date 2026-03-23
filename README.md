@@ -53,6 +53,7 @@ src/main/java/com/yoonsunmi/flashCoupon
 ```
 
 ## 🔌 Core API
-- POST /api/v1/admin/coupons : [Admin] 선착순 쿠폰 등록
-- POST /api/v1/coupons/{id}/issue : [User] 쿠폰 발급 요청 (동시성 처리)
-- GET /api/v1/my-coupons : [User] 내 쿠폰 함 조회
+http://localhost:8010/api/flashCoupon/swagger-ui/index.html
+- POST /api/flashCoupon/coupons/{couponId}/issue : 쿠폰 발급 요청 후 지급 (동시성 처리)
+- GET  /api/flashCoupon/my-coupons : 내 쿠폰 조회
+- POST /api/flashCoupon/admin/coupons : 관리자 쿠폰 등록

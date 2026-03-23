@@ -1,5 +1,6 @@
 package com.yoonsunmi.flashCoupon.domain.user.api;
 
+import com.yoonsunmi.flashCoupon.domain.auth.entity.UserDetail;
 import com.yoonsunmi.flashCoupon.domain.user.dto.response.MeResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -9,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +29,10 @@ public class UserController {
             @ApiResponse(responseCode = "401", description = "조회 실패(토큰 만료 재발급 필요)")
     })
     @GetMapping("/me")
-    public MeResponseDto me(@AuthenticationPrincipal UserDetails userDetails) {
-        String loginId = userDetails.getUsername();
+    public MeResponseDto me(@AuthenticationPrincipal UserDetail userDetail) {
+        String loginId = userDetail.getLoginId();
 
-        String role = userDetails.getAuthorities().stream()
+        String role = userDetail.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .filter(auth -> auth.startsWith("ROLE_"))
                 .findFirst()

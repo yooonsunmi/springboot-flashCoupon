@@ -30,7 +30,7 @@ public class UserCoupon {
     @Column(nullable = false)
     private LocalDateTime issuedAt;             // 쿠폰 발급 일시
 
-    @Enumerated(EnumType.STRING)                // Enum은 반드시 STRING으로 저장해야 나중에 순서가 바뀌어도 안전
+    @Enumerated(EnumType.STRING)                // Enum은 반드시 STRING으로 저장해야 나중에 순서가 바뀌어도 안전!
     private CouponStatus status;                // 쿠폰 발급 상태
 
     @Builder

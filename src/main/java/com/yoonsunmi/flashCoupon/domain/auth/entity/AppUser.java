@@ -16,8 +16,11 @@ public class AppUser extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 150)
     private String loginId;
+
+    @Column(nullable = false, unique = true, length = 50)
+    private String userName;
 
     @Column(nullable = false)
     private String passwordHash;
