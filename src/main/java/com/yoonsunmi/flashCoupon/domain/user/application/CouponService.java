@@ -2,6 +2,7 @@ package com.yoonsunmi.flashCoupon.domain.user.application;
 
 import com.yoonsunmi.flashCoupon.domain.auth.entity.AppUser;
 import com.yoonsunmi.flashCoupon.domain.auth.repository.AppUserRepository;
+import com.yoonsunmi.flashCoupon.domain.user.dto.request.CouponCreateRequestDto;
 import com.yoonsunmi.flashCoupon.domain.user.dto.response.MyCouponResponseDto;
 import com.yoonsunmi.flashCoupon.domain.user.entity.Coupon;
 import com.yoonsunmi.flashCoupon.domain.user.entity.CouponStatus;
@@ -75,4 +76,23 @@ public class CouponService {
         return resultList;
     }
 
+    /**
+     * 쿠폰 등록
+     * @param requestDto
+     * @return
+     */
+    @Transactional
+    public Long createCoupon(CouponCreateRequestDto requestDto) {
+
+        Coupon coupon = Coupon.builder()
+                .name(requestDto.getName())
+                .description(requestDto.getDescription())
+                .totalQuantity(requestDto.getTotalQuantity())
+                .startAt(requestDto.getStartAt())
+                .endAt(requestDto.getEndAt())
+                .validDays(requestDto.getValidDays())
+                .build();
+
+        return couponRepository.save(coupon).getId();
+    }
 }

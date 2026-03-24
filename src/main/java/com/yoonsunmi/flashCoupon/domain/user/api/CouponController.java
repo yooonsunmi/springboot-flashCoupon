@@ -2,6 +2,7 @@ package com.yoonsunmi.flashCoupon.domain.user.api;
 
 import com.yoonsunmi.flashCoupon.domain.auth.entity.UserDetail;
 import com.yoonsunmi.flashCoupon.domain.user.application.CouponService;
+import com.yoonsunmi.flashCoupon.domain.user.dto.request.CouponCreateRequestDto;
 import com.yoonsunmi.flashCoupon.domain.user.dto.response.MyCouponResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,6 +37,14 @@ public class CouponController {
     public ResponseEntity<List<MyCouponResponseDto>> getMyCoupons(@AuthenticationPrincipal UserDetail userDetail) {
         List<MyCouponResponseDto> myCoupons = couponService.getMyCoupons(userDetail.getUserId());
         return ResponseEntity.ok(myCoupons);
+    }
+
+    //@PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "쿠폰 등록")
+    @PostMapping("/create")
+    public ResponseEntity<Long> createCoupon(@RequestBody CouponCreateRequestDto requestDto) {
+        Long couponId = couponService.createCoupon(requestDto);
+        return ResponseEntity.ok(couponId);
     }
 
 }
